@@ -64,7 +64,7 @@ abstract class AbstractAdapter extends AbstractEventsAware implements AdapterInt
     }
 
     /**
-     * Sets the default access level (Phalcon\Acl::ALLOW or Phalcon\Acl::DENY)
+     * Sets the default access level (Phalcon\Ac\Enuml::ALLOW or Phalcon\Acl\Enum::DENY)
      */
     public function setDefaultAction(int defaultAccess) -> void
     {

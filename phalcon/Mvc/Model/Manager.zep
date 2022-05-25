@@ -698,7 +698,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
     /**
      * Binds a behavior to a model
      */
-    public function addBehavior(<ModelInterface> model, <BehaviorInterface> behavior) -> void
+    public function addBehavior(<ModelInterface> model, <BehaviorInterface> behavior, string name = null) -> void
     {
         var entityName;
 
@@ -711,7 +711,25 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         /**
          * Append the behavior to the list of behaviors
          */
-        let this->behaviors[entityName][] = behavior;
+        if !empty name {
+            let this->behaviors[entityName][name] = behavior;
+        } else {
+            let this->behaviors[entityName][] = behavior;
+        }
+    }
+
+    /**
+     * Remove a behavior from a model by its name
+     */
+    public function removeBehavior(<ModelInterface> model, string name) -> void
+    {
+        var entityName;
+
+        let entityName = get_class_lower(model);
+
+        if isset this->behaviors[entityName][name] {
+            unset this->behaviors[entityName][name];
+        }
     }
 
     /**

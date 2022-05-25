@@ -25,7 +25,12 @@ interface ManagerInterface
     /**
      * Binds a behavior to a model
      */
-    public function addBehavior(<ModelInterface> model, <BehaviorInterface> behavior) -> void;
+    public function addBehavior(<ModelInterface> model, <BehaviorInterface> behavior, string name = null) -> void;
+
+    /**
+     * Unbinds a behavior from a model by its name
+     */
+    public function removeBehavior(<ModelInterface> model, string name) -> void;
 
     /**
      * Setup a relation reverse 1-1  between two models

@@ -540,10 +540,57 @@ abstract class Model extends AbstractInjectionAware implements EntityInterface, 
      *     }
      * }
      *```
+     *
+     * @param BehaviorInterface behavior
+     * @param string|null       name Optional behavior name, used as list key to store behavior
      */
-    public function addBehavior(<BehaviorInterface> behavior) -> void
+    public function addBehavior(<BehaviorInterface> behavior, string name = null) -> void
     {
-        (<ManagerInterface> this->modelsManager)->addBehavior(this, behavior);
+        (<ManagerInterface> this->modelsManager)->addBehavior(this, behavior, name);
+    }
+
+    /**
+     * Remove a behavior from a model by its name
+     *
+     * Note: only named behaviors can be removed
+     *
+     *```php
+     * use Phalcon\Mvc\Model;
+     * use Phalcon\Mvc\Model\Behavior\SoftDelete;
+     *
+     * class Robots extends Model
+     * {
+     *     public int $id;
+     *     public string $status;
+     *
+     *     public function initialize()
+     *     {
+     *         $this->addBehavior(
+     *             new SoftDelete([
+     *                 "beforeDelete" => [
+     *                     "field"  => "status",
+     *                     "value" => "deleted",
+     *                 ],
+     *             ]),
+     *             "softDelete"      // set a name for behavior
+     *         );
+     *     }
+     *
+     *     public function someMethod()
+     *     {
+     *          if ($this->id == 10) {
+     *              // remove a behavior by its name
+     *              $this->removeBehavior("softDelete");
+     *          }
+     *     }
+     * }
+     *```
+     *
+     * @param string name Name of behavior to be removed
+     */
+    public function removeBehavior(string name) -> void
+    {
+        (<ManagerInterface> this->modelsManager)->removeBehavior(this, name);
     }
 
     /**

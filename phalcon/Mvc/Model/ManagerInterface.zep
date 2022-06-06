@@ -27,7 +27,16 @@ interface ManagerInterface
      */
     public function addBehavior(
         <ModelInterface> model,
-        <BehaviorInterface> behavior
+        <BehaviorInterface> behavior,
+        string name = null
+    ) -> void;
+
+    /**
+     * Unbinds a behavior from a model by its name
+     */
+    public function removeBehavior(
+        <ModelInterface> model,
+        string name
     ) -> void;
 
     /**

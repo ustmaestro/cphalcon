@@ -25,7 +25,11 @@ interface ManagerInterface
     /**
      * Binds a behavior to a model
      */
-    public function addBehavior(<ModelInterface> model, <BehaviorInterface> behavior, string name = null) -> void;
+    public function addBehavior(
+        <ModelInterface> model,
+        <BehaviorInterface> behavior,
+        string name = null
+    ) -> void;
 
     /**
      * Unbinds a behavior from a model by its name
@@ -39,7 +43,13 @@ interface ManagerInterface
      * @param    mixed  referencedFields
      * @param    array  options
      */
-    public function addBelongsTo(<ModelInterface> model, fields, string! referencedModel, referencedFields, options = null) -> <RelationInterface>;
+    public function addBelongsTo(
+        <ModelInterface> model,
+        var fields,
+        string! referencedModel,
+        var referencedFields,
+        array options = []
+    ) -> <RelationInterface>;
 
     /**
      * Setup a relation 1-n between two models
@@ -48,7 +58,13 @@ interface ManagerInterface
      * @param    mixed  referencedFields
      * @param    array  options
      */
-    public function addHasMany(<ModelInterface> model, fields, string! referencedModel, referencedFields, options = null) -> <RelationInterface>;
+    public function addHasMany(
+        <ModelInterface> model,
+        var fields,
+        string! referencedModel,
+        var referencedFields,
+        array options = []
+    ) -> <RelationInterface>;
 
     /**
      * Setup a 1-1 relation between two models
@@ -57,7 +73,13 @@ interface ManagerInterface
      * @param    mixed  referencedFields
      * @param    array  options
      */
-    public function addHasOne(<ModelInterface> model, fields, string! referencedModel, referencedFields, options = null) -> <RelationInterface>;
+    public function addHasOne(
+        <ModelInterface> model,
+        var fields,
+        string! referencedModel,
+        var referencedFields,
+        array options = []
+    ) -> <RelationInterface>;
 
     /**
      * Setups a 1-1 relation between two models using an intermediate table
@@ -68,8 +90,16 @@ interface ManagerInterface
      * @param    string referencedFields
      * @param   array options
      */
-    public function addHasOneThrough(<ModelInterface> model, var fields, string! intermediateModel,
-        var intermediateFields, var intermediateReferencedFields, string! referencedModel, var referencedFields, var options = null) -> <RelationInterface>;
+    public function addHasOneThrough(
+        <ModelInterface> model,
+        var fields,
+        string! intermediateModel,
+        var intermediateFields,
+        var intermediateReferencedFields,
+        string! referencedModel,
+        var referencedFields,
+        array options = []
+    ) -> <RelationInterface>;
 
     /**
      * Setups a relation n-m between two models
@@ -80,8 +110,16 @@ interface ManagerInterface
      * @param    string referencedFields
      * @param   array options
      */
-    public function addHasManyToMany(<ModelInterface> model, var fields, string! intermediateModel,
-        var intermediateFields, var intermediateReferencedFields, string! referencedModel, var referencedFields, var options = null) -> <RelationInterface>;
+    public function addHasManyToMany(
+        <ModelInterface> model,
+        var fields,
+        string! intermediateModel,
+        var intermediateFields,
+        var intermediateReferencedFields,
+        string! referencedModel,
+        var referencedFields,
+        array options = []
+    ) -> <RelationInterface>;
 
     /**
      * Creates a Phalcon\Mvc\Model\Query\Builder
@@ -114,11 +152,17 @@ interface ManagerInterface
      *
      * @param string            $modelName
      * @param string            $modelRelation
-     * @param array|string|null $parameters
      * @param ModelInterface    $record
+     * @param array|string|null $parameters
      * @param string|null       $method
      */
-    public function getBelongsToRecords(string! modelName, string! modelRelation, <ModelInterface> record, parameters = null, string method = null) -> <ResultsetInterface> | bool;
+    public function getBelongsToRecords(
+        string! modelName,
+        string! modelRelation,
+        <ModelInterface> record,
+        var parameters = null,
+        string method = null
+    ) -> <ResultsetInterface> | bool;
 
     /**
      * Gets hasMany relations defined on a model
@@ -130,11 +174,17 @@ interface ManagerInterface
      *
      * @param string            $modelName
      * @param string            $modelRelation
-     * @param array|string|null $parameters
      * @param ModelInterface    $record
+     * @param array|string|null $parameters
      * @param string|null       $method
      */
-    public function getHasManyRecords(string! modelName, string! modelRelation, <ModelInterface> record, parameters = null, string method = null) -> <ResultsetInterface> | bool;
+    public function getHasManyRecords(
+        string! modelName,
+        string! modelRelation,
+        <ModelInterface> record,
+        var parameters = null,
+        string method = null
+    ) -> <ResultsetInterface> | bool;
 
     /**
      * Gets hasManyToMany relations defined on a model
@@ -161,11 +211,17 @@ interface ManagerInterface
      *
      * @param string            $modelName
      * @param string            $modelRelation
-     * @param array|string|null $parameters
      * @param ModelInterface    $record
+     * @param array|string|null $parameters
      * @param string|null       $method
      */
-    public function getHasOneRecords(string! modelName, string! modelRelation, <ModelInterface> record, parameters = null, string method = null) -> <ModelInterface> | bool;
+    public function getHasOneRecords(
+        string! modelName,
+        string! modelRelation,
+        <ModelInterface> record,
+        var parameters = null,
+        string method = null
+    ) -> <ModelInterface> | bool;
 
     /**
      * Get last initialized model
@@ -212,7 +268,12 @@ interface ManagerInterface
      *
      * @return \Phalcon\Mvc\Model\Resultset\Simple|int|false
      */
-    public function getRelationRecords(<RelationInterface> relation, <ModelInterface> record, var parameters = null, string method = null);
+    public function getRelationRecords(
+        <RelationInterface> relation,
+        <ModelInterface> record,
+        var parameters = null,
+        string method = null
+    );
 
     /**
      * Query all the relationships defined on a model

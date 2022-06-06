@@ -34,7 +34,10 @@ interface ManagerInterface
     /**
      * Unbinds a behavior from a model by its name
      */
-    public function removeBehavior(<ModelInterface> model, string name) -> void;
+    public function removeBehavior(
+        <ModelInterface> model,
+        string name
+    ) -> void;
 
     /**
      * Setup a relation reverse 1-1  between two models
